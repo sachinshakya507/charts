@@ -3,9 +3,9 @@ entries:
   service:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-08-06T06:04:34.511533182Z"
+    created: "2024-08-06T06:16:13.449306862Z"
     description: A Helm chart for Kubernetes
-    digest: ca6b01ba44cbf7ec6c7421062bc678ca8a952f421100b0f530ef1eb185efd66c
+    digest: 7de96925c18a02bfbc52a42124fdf94b4f85682ef57c44e687d32f182a47f26c
     name: service
     type: application
     urls:
@@ -13,9 +13,9 @@ entries:
     version: 0.1.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-08-06T06:04:34.511943027Z"
+    created: "2024-08-06T06:16:13.449724313Z"
     description: A Helm chart for Kubernetes
-    digest: ca6b01ba44cbf7ec6c7421062bc678ca8a952f421100b0f530ef1eb185efd66c
+    digest: 7de96925c18a02bfbc52a42124fdf94b4f85682ef57c44e687d32f182a47f26c
     name: service
     type: application
     urls:
@@ -24,12 +24,12 @@ entries:
   web-service:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-08-06T06:04:34.512331421Z"
+    created: "2024-08-06T06:16:13.450370332Z"
     description: A Helm chart for Kubernetes
-    digest: ff72611e7fa5228bcb073a1f8b2689155bc6567fa481f6dea1ab59e69e6b55c5
+    digest: 9fcf8736dcd97d0857c9e1cfe198a70fc324019535d6a4e745ca63367117c9c6
     name: web-service
     type: application
     urls:
     - https://sachinshakya507.github.io/charts/packaged-charts/web-service-0.1.0.tgz
     version: 0.1.0
-generated: "2024-08-06T06:04:34.510946488Z"
+generated: "2024-08-06T06:16:13.448684047Z"
