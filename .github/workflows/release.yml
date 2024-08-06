@@ -1,58 +1,36 @@
-name: Release Chart
+name: release
 
 on:
   push:
-    tags:
-      - 'v*.*.*' # Triggers on version tags
-permissions:
-  contents: write
+    branches:
+      - main
+      - helm-nats-1.x
+
 jobs:
   release:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Set up Helm
-        uses: azure/setup-helm@v1
+        uses: azure/setup-helm@v4
         with:
-          version: v3.12.2
-    #   - name: Update Chart Versions
-    #     run: |
-    #         for chart in helm/*; do
-    #           if [ -d "$chart" ]; then
-    #             chart_file="$chart/Chart.yaml"
-    #             if [ -f "$chart_file" ]; then
-    #               echo "Updating version in $chart_file to ${TAG_VERSION}"
-    #               yq e ".version = \"${TAG_VERSION}\"" -i "$chart_file"
-    #             fi
-    #           fi
-    #         done
-      - name: Package Helm Charts
-        run: |
-            mkdir -p packaged-charts
-            for chart in helm/*; do
-                if [ -d "$chart" ]; then
-                helm package "$chart" -d packaged-charts
-                fi
-            done
-      - name: Package Helm Chart
-        run: helm package helm/service
+          version: v3.11.2
 
-      - name: Create Helm Index
-        run: helm repo index . --url https://sachinshakya507.github.io/charts
-
-      - name: Commit Changes
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add .
-          git commit -m "Update chart index for new release"
-
-      - name: Push Changes
-        uses: ad-m/github-push-action@v0.6.0
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.6.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
-          ref: refs/heads/main    
+          charts_dir: charts
+          config: helm/cr.yaml
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
