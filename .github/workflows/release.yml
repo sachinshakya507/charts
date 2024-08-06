@@ -1,0 +1,37 @@
+name: Release Chart
+
+on:
+  push:
+    tags:
+      - 'v*.*.*' # Triggers on version tags
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.12.2
+
+      - name: Package Helm Chart
+        run: helm package helm/service
+
+      - name: Create Helm Index
+        run: helm repo index . --url https://sachinshakya507.github.io/charts
+
+      - name: Commit Changes
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "Update chart index for new release"
+
+      - name: Push Changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
