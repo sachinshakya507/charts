@@ -18,7 +18,17 @@ jobs:
         uses: azure/setup-helm@v1
         with:
           version: v3.12.2
-
+      - name: Update Chart Versions
+        run: |
+            for chart in helm/*; do
+              if [ -d "$chart" ]; then
+                chart_file="$chart/Chart.yaml"
+                if [ -f "$chart_file" ]; then
+                  echo "Updating version in $chart_file to ${TAG_VERSION}"
+                  yq e ".version = \"${TAG_VERSION}\"" -i "$chart_file"
+                fi
+              fi
+            done
       - name: Package Helm Charts
         run: |
             mkdir -p packaged-charts
