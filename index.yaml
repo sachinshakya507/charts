@@ -3,7 +3,27 @@ entries:
   service:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-08-06T06:16:13.449306862Z"
+    created: "2024-08-06T08:01:34.351760083Z"
+    description: A Helm chart for Kubernetes
+    digest: 23d42cd92506a376a725534e4e0c31c122f7fef775597b30731efd26bc76049c
+    name: service
+    type: application
+    urls:
+    - https://sachinshakya507.github.io/charts/service-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-08-06T08:01:34.352575787Z"
+    description: A Helm chart for Kubernetes
+    digest: 23d42cd92506a376a725534e4e0c31c122f7fef775597b30731efd26bc76049c
+    name: service
+    type: application
+    urls:
+    - https://sachinshakya507.github.io/charts/packaged-charts/service-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-08-06T08:01:34.351230307Z"
     description: A Helm chart for Kubernetes
     digest: 7de96925c18a02bfbc52a42124fdf94b4f85682ef57c44e687d32f182a47f26c
     name: service
@@ -13,7 +33,7 @@ entries:
     version: 0.1.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-08-06T06:16:13.449724313Z"
+    created: "2024-08-06T08:01:34.352171457Z"
     description: A Helm chart for Kubernetes
     digest: 7de96925c18a02bfbc52a42124fdf94b4f85682ef57c44e687d32f182a47f26c
     name: service
@@ -24,12 +44,12 @@ entries:
   web-service:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-08-06T06:16:13.450370332Z"
+    created: "2024-08-06T08:01:34.352984746Z"
     description: A Helm chart for Kubernetes
-    digest: 9fcf8736dcd97d0857c9e1cfe198a70fc324019535d6a4e745ca63367117c9c6
+    digest: b25e9260d307efa09d4042899ef277edee864a4face9ecfd6befc866e7d12f51
     name: web-service
     type: application
     urls:
     - https://sachinshakya507.github.io/charts/packaged-charts/web-service-0.1.0.tgz
     version: 0.1.0
-generated: "2024-08-06T06:16:13.448684047Z"
+generated: "2024-08-06T08:01:34.349739674Z"
