@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "service.fullname" . }}-test-connection"
+  labels:
+    {{- include "service.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox:1.35.0
+      command: ['wget']
+      args: ['{{ include "service.fullname" . }}:{{ .Values.service.port }}']
+      resources:
+        requests:
+          memory: "32Mi"
+          cpu: "100m"
+        limits:
+          memory: "64Mi"
+          cpu: "200m"
+      securityContext:
+        readOnlyRootFilesystem: true
+        runAsUser: 1000
+        runAsNonRoot: true
+  restartPolicy: Never
+
