@@ -1,3 +1,2 @@
-pages-branch: gh-pages
-pages-index-path: charts/index.yaml
-skip-existing: true
+owner: sachinshakya507
+git-base-url: https://sachinshakya507.github.com/
