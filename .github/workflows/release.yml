@@ -1,10 +1,10 @@
+# based on: https://github.com/helm/charts-repo-actions-demo/blob/main/.github/workflows/release.yaml
 name: release
 
 on:
   push:
     branches:
-      -'v*.*.*' # Triggers on version tags
-
+      - main
 
 jobs:
   release:
