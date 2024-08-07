@@ -26,10 +26,6 @@ spec:
             - path:
                 type: PathPrefix
                 value: /
-          backendRefs:
-            - group: ""
-              kind: Service
-              weight: 1
     service:
       type: ClusterIP
       port: 80
