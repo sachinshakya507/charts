@@ -9,21 +9,22 @@ spec:
     {{- range .Values.httpRoute.parentRefs }}
     - name: {{ .name }}
       kind: {{ .kind }}
+      {{- if .namespace }}
       namespace: {{ .namespace }}
+      {{- end }}
     {{- end }}
-  
   hostnames:
     {{- range .Values.httpRoute.hostnames }}
     - "{{ . }}"
     {{- end }}
-  
+
   rules:
     {{- range .Values.httpRoute.rules }}
     - backendRefs:
         {{- range .backendRefs }}
         - group: "{{ .group }}"
           kind: "{{ .kind }}"
-          name: "{{ .name }}"
+          name: {{ include "web-service.fullname" . }}  
           port: {{ .port }}
           weight: {{ .weight }}
         {{- end }}

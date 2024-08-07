@@ -18,7 +18,11 @@ spec:
       hostnames:
         - "envoytest11.hamropatro.com"
       rules:
-        - matches:
+        - backendRefs:
+            group: ""
+            kind: Service
+            weight: 1
+          matches:
             - path:
                 type: PathPrefix
                 value: /
