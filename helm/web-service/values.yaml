@@ -9,7 +9,8 @@ image:
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
-
+env: {}
+secretenv: {}
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -79,14 +80,15 @@ liveness:
   timeoutSeconds: 1
   periodSeconds: 30
   initialDelaySeconds: 30
+
 readiness:
   enabled: true
   path: "/"
   port: http
   command: []
+  timeoutSeconds: 1
   periodSeconds: 30
   initialDelaySeconds: 30
-  timeoutSeconds: 1
 
 autoscaling:
   enabled: false
