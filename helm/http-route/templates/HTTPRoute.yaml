@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: HTTPRoute
+metadata:
+  name: {{ include "grpc-service.fullname" . }}
+  annotations:
+  labels:
+    {{- include "grpc-service.labels" . | nindent 4 }}
+spec:
+  parentRefs:
+    - name: {{ .Values.httpRoute.parentRefs.name }}
+      kind: {{ .Values.httpRoute.parentRefs.kind }}
+      namespace: {{ .Values.httpRoute.parentRefs.namespace }}
+  
+  hostnames:
+    {{- range .Values.httpRoute.hostnames }}
+    - "{{ . }}"
+    {{- end }}
+  
+  rules:
+    - backendRefs:
+        - group: {{ .Values.httpRoute.rules.backendRefs.group }}
+          kind: {{ .Values.httpRoute.rules.backendRefs.kind }}
+          name: {{ .Values.httpRoute.rules.backendRefs.name }}
+          port: {{ .Values.httpRoute.rules.backendRefs.port }}
+          weight: {{ .Values.httpRoute.rules.backendRefs.weight }}
+      matches:
+        - path:
+            type: {{ .Values.httpRoute.rules.matches.type }}
+            value: {{ .Values.httpRoute.rules.matches.value }}
