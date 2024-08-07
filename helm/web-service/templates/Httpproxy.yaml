@@ -9,6 +9,7 @@ spec:
     {{- range .Values.httpRoute.parentRefs }}
     - name: {{ .name }}
       kind: {{ .kind }}
+      namespace: {{ .namespace }}
     {{- end }}
   
   hostnames:

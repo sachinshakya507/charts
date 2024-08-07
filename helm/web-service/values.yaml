@@ -122,6 +122,7 @@ httpRoute:
   parentRefs:
     - name: envoygateway
       kind: Gateway
+      namespace: default
   hostnames:
     - "envoytest.hamropatro.com"
   rules:
