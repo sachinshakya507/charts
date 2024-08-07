@@ -6,9 +6,9 @@ metadata:
 spec:
   chart: web-service
   repo: https://sachinshakya507.github.io/charts
-  targetNamespace: default
+  targetNamespace: chart-test
   valuesContent: |-
-    replicaCount: 2
+    replicaCount: 3
     image:
       repository: nginx
       pullPolicy: Always
@@ -23,6 +23,7 @@ spec:
             kind: Service
             weight: 1
             name: nginx11-web-service
+            port: 80
           matches:
             - path:
                 type: PathPrefix

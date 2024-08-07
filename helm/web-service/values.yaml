@@ -130,6 +130,7 @@ httpRoute:
         - group: ""
           kind: Service
           weight: 1
+          name: ""
       matches:
         - path:
             type: PathPrefix
