@@ -62,7 +62,7 @@ spec:
             {{- if .Values.liveness.path }}
             httpGet:
               path: {{ .Values.liveness.path }}
-              port: {{ .Values.http.port }}
+              port: {{ .Values.service.port }}
             {{- end }}
             initialDelaySeconds: {{ .Values.liveness.initialDelaySeconds }}
             periodSeconds: {{ .Values.liveness.periodSeconds }}
@@ -78,7 +78,7 @@ spec:
             {{- if .Values.readiness.path }}
             httpGet:
               path: {{ .Values.readiness.path }}
-              port: {{ .Values.http.port }}
+              port: {{ .Values.service.port }}
             {{- end }}
             periodSeconds: {{ .Values.readiness.periodSeconds }}
             initialDelaySeconds: {{ .Values.readiness.initialDelaySeconds }}
