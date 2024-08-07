@@ -45,6 +45,16 @@ entries:
   web-service:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-08-07T10:17:22.891684641Z"
+    description: A Helm chart for Kubernetes
+    digest: 1f6b0284b68c997bf6f2d7e477b2622188ad3c383f2323cd483d7090ca7ae4a9
+    name: web-service
+    type: application
+    urls:
+    - https://github.com/sachinshakya507/charts/releases/download/web-service-0.8.24/web-service-0.8.24.tgz
+    version: 0.8.24
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-08-07T10:13:34.816948548Z"
     description: A Helm chart for Kubernetes
     digest: 95d94d8d091c80e880f22abe2fe13d6e9afb96a54457fdcba30aded47d6dca19
@@ -323,4 +333,4 @@ entries:
     urls:
     - https://github.com/sachinshakya507/charts/releases/download/web-service-0.4.0/web-service-0.4.0.tgz
     version: 0.4.0
-generated: "2024-08-07T10:13:34.817307569Z"
+generated: "2024-08-07T10:17:22.891936661Z"
