@@ -8,7 +8,7 @@ spec:
   repo: https://sachinshakya507.github.io/charts
   targetNamespace: default
   valuesContent: |-
-    replicaCount: 1
+    replicaCount: 2
     image:
       repository: nginx
       pullPolicy: Always
@@ -19,9 +19,10 @@ spec:
         - "envoytest11.hamropatro.com"
       rules:
         - backendRefs:
-            group: ""
+          - group: ""
             kind: Service
             weight: 1
+            name: nginx11-web-service
           matches:
             - path:
                 type: PathPrefix
