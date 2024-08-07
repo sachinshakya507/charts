@@ -1,12 +1,12 @@
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
-  name: nginx1
+  name: nginx11
   namespace: kube-system
 spec:
   chart: web-service
   repo: https://sachinshakya507.github.io/charts
-  targetNamespace: default
+  targetNamespace: chart-test
   valuesContent: |-
     replicaCount: 1
     image:
@@ -15,19 +15,10 @@ spec:
       tag: "latest"
     httpRoute:
       enabled: true
-      name: httproute
-      parentRefs:
-        - name: envoygateway
-          kind: Gateway
       hostnames:
         - "envoytest1.hamropatro.com"
       rules:
-        - backendRefs:
-            - group: ""
-              kind: Service
-              name: nginx1-web-service
-              port: 80
-          matches:
+        - matches:
             - path:
                 type: PathPrefix
                 value: /

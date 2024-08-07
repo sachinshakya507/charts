@@ -119,7 +119,6 @@ affinity: {}
 
 httpRoute:
   enabled: true
-  namespace: default
   parentRefs:
     - name: envoygateway
       kind: Gateway
