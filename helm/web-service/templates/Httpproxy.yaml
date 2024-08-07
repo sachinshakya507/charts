@@ -24,7 +24,7 @@ spec:
         {{- range .backendRefs }}
         - group: "{{ .group }}"
           kind: "{{ .kind }}"
-          name: "{{ .name }}"
+          name: {{ include "web-service.fullname" . }}
           port: {{ .port }}
           weight: {{ .weight }}
         {{- end }}
