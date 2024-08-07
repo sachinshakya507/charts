@@ -11,6 +11,8 @@ image:
   tag: ""
 
 imagePullSecrets: []
+env: {}
+secretenv: {}
 nameOverride: ""
 fullnameOverride: ""
 
