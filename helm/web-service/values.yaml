@@ -74,13 +74,15 @@ resources:
 liveness:
   enabled: true
   path: "/"
+  port: http
   command: []
+  timeoutSeconds: 1
   periodSeconds: 30
   initialDelaySeconds: 30
-  timeoutSeconds: 1
 readiness:
   enabled: true
   path: "/"
+  port: http
   command: []
   periodSeconds: 30
   initialDelaySeconds: 30
