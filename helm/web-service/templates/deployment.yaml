@@ -52,10 +52,38 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+         {{- if .Values.liveness.enabled }}
           livenessProbe:
-            {{- toYaml .Values.livenessProbe | nindent 12 }}
+            {{- with .Values.liveness.command }}
+            exec:
+              command: 
+                {{- toYaml . | nindent 16 }}
+            {{- end }}
+            {{- if .Values.liveness.path }}
+            httpGet:
+              path: {{ .Values.liveness.path }}
+              port: {{ .Values.http.port }}
+            {{- end }}
+            initialDelaySeconds: {{ .Values.liveness.initialDelaySeconds }}
+            periodSeconds: {{ .Values.liveness.periodSeconds }}
+            timeoutSeconds: {{ .Values.liveness.timeoutSeconds }}
+          {{- end }}
+          {{- if .Values.readiness.enabled }}
           readinessProbe:
-            {{- toYaml .Values.readinessProbe | nindent 12 }}
+            {{- with .Values.readiness.command }}
+            exec:
+              command: 
+                {{- toYaml . | nindent 16 }}
+            {{- end }}
+            {{- if .Values.readiness.path }}
+            httpGet:
+              path: {{ .Values.readiness.path }}
+              port: {{ .Values.http.port }}
+            {{- end }}
+            periodSeconds: {{ .Values.readiness.periodSeconds }}
+            initialDelaySeconds: {{ .Values.readiness.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.readiness.timeoutSeconds }}
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}

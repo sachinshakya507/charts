@@ -71,14 +71,20 @@ resources:
     cpu: 100m
     memory: 128Mi
 
-livenessProbe:
-  httpGet:
-    path: /
-    port: http
-readinessProbe:
-  httpGet:
-    path: /
-    port: http
+liveness:
+  enabled: true
+  path: "/"
+  command: []
+  periodSeconds: 30
+  initialDelaySeconds: 30
+  timeoutSeconds: 1
+readiness:
+  enabled: true
+  path: "/"
+  command: []
+  periodSeconds: 30
+  initialDelaySeconds: 30
+  timeoutSeconds: 1
 
 autoscaling:
   enabled: false
