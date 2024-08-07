@@ -129,8 +129,6 @@ httpRoute:
     - backendRefs:
         - group: ""
           kind: Service
-          name: nginx
-          port: 80
           weight: 1
       matches:
         - path:
