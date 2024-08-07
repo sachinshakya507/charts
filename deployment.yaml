@@ -6,7 +6,7 @@ metadata:
 spec:
   chart: web-service
   repo: https://sachinshakya507.github.io/charts
-  targetNamespace: chart-test
+  targetNamespace: default
   valuesContent: |-
     replicaCount: 1
     image:
@@ -22,6 +22,10 @@ spec:
             - path:
                 type: PathPrefix
                 value: /
+          backendRefs:
+            - group: ""
+              kind: Service
+              weight: 1
     service:
       type: ClusterIP
       port: 80
