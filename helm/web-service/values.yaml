@@ -115,3 +115,25 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+
+httpRoute:
+  enabled: true
+  name: httproute
+  namespace: default
+  parentRefs:
+    - name: envoygateway
+      kind: Gateway
+  hostnames:
+    - "envoytest.hamropatro.com"
+  rules:
+    - backendRefs:
+        - group: ""
+          kind: Service
+          name: nginx
+          port: 80
+          weight: 1
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
