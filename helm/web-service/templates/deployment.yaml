@@ -41,6 +41,9 @@ spec:
             - name: {{ $key}}
               value: {{ $value | quote}}
             {{- end }}
+          envFrom:
+            - secretRef:
+                name: {{ .Release.Name }}-secrets
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
