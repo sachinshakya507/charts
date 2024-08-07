@@ -1,14 +1,33 @@
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
-  name: agenda-agendash
+  name: nginx1
   namespace: kube-system
 spec:
   chart: web-service
   repo: https://sachinshakya507.github.io/charts
   targetNamespace: default
   valuesContent: |-
+    replicaCount: 2
     image:
       repository: nginx
       pullPolicy: Always
       tag: "latest"
+    httpRoute:
+      enabled: true
+      name: httproute
+      parentRefs:
+        - name: envoygateway
+          kind: Gateway
+      hostnames:
+        - "envoytest1.hamropatro.com"
+      rules:
+        - backendRefs:
+            - group: ""
+              kind: Service
+              name: nginx1-web-service
+              port: 80
+          matches:
+            - path:
+                type: PathPrefix
+                value: /
