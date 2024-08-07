@@ -19,13 +19,19 @@ spec:
     {{- end }}
   
   rules:
+    {{- range .Values.httpRoute.rules }}
     - backendRefs:
-        - group: {{ .Values.httpRoute.rules.backendRefs.group }}
-          kind: {{ .Values.httpRoute.rules.backendRefs.kind }}
-          name: {{ .Values.httpRoute.rules.backendRefs.name }}
-          port: {{ .Values.httpRoute.rules.backendRefs.port }}
-          weight: {{ .Values.httpRoute.rules.backendRefs.weight }}
+        {{- range .backendRefs }}
+        - group: "{{ .group }}"
+          kind: "{{ .kind }}"
+          name: "{{ .name }}"
+          port: {{ .port }}
+          weight: {{ .weight }}
+        {{- end }}
       matches:
+        {{- range .matches }}
         - path:
-            type: {{ .Values.httpRoute.rules.matches.type }}
-            value: {{ .Values.httpRoute.rules.matches.value }}
+            type: {{ .path.type }}
+            value: {{ .path.value }}
+        {{- end }}
+    {{- end }}
