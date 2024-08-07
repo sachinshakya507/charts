@@ -8,7 +8,7 @@ spec:
   repo: https://sachinshakya507.github.io/charts
   targetNamespace: default
   valuesContent: |-
-    replicaCount: 2
+    replicaCount: 1
     image:
       repository: nginx
       pullPolicy: Always
