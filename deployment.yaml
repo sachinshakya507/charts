@@ -16,7 +16,7 @@ spec:
     httpRoute:
       enabled: true
       hostnames:
-        - "envoytest1.hamropatro.com"
+        - "envoytest11.hamropatro.com"
       rules:
         - matches:
             - path:
