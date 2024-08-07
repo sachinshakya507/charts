@@ -60,3 +60,25 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Create the name of the service port to use
+*/}}
+{{- define "service.portName" -}}
+{{- if .Values.tls.enabled }}
+{{- printf "%s" "grpcs" }}
+{{- else }}
+{{- printf "%s" "grpc" }}
+{{- end }}
+{{- end }}
+
+{{/*
+Create the name of the service port to use
+*/}}
+{{- define "service.appProtocol" -}}
+{{- if .Values.tls.enabled }}
+{{- printf "%s" "https" }}
+{{- else }}
+{{- printf "%s" "http" }}
+{{- end }}
+{{- end }}

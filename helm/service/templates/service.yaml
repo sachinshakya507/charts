@@ -7,9 +7,26 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
+    {{- if .Values.http.enabled }}
+    - port: {{ .Values.http.port }}
       protocol: TCP
+      targetPort: http
       name: http
+      appProtocol: http
+    {{- end }}
+    {{- if .Values.grpc.enabled }}
+    - port: {{ .Values.grpc.port }}
+      protocol: TCP
+      targetPort: grpc
+      name: grpc
+      appProtocol: http
+    {{- end }}
+    {{- if .Values.grpcs.enabled }}
+    - port: {{ .Values.grpcs.port }}
+      protocol: TCP
+      targetPort: grpcs
+      name: grpcs
+      appProtocol: https
+    {{- end }}
   selector:
     {{- include "service.selectorLabels" . | nindent 4 }}
