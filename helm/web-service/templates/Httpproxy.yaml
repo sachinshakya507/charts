@@ -2,7 +2,7 @@ apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: HTTPRoute
 metadata:
   name: {{ include "web-service.fullname" . }}
-  namespace: {{ .Values.httpRoute.namespace }}
+  namespace: {{ .Values.httpRoute.parentRefs.namespace | default "default" }}
   labels:
     {{- include "web-service.labels" . | nindent 4 }}
 spec:
@@ -10,23 +10,25 @@ spec:
     {{- range .Values.httpRoute.parentRefs }}
     - name: {{ .name }}
       kind: {{ .kind }}
-      namespace: {{ .namespace | default "default" }}
+      {{- if .namespace }}
+      namespace: {{ .namespace }}
+      {{- end }}
     {{- end }}
-  
+
   hostnames:
     {{- range .Values.httpRoute.hostnames }}
     - "{{ . }}"
     {{- end }}
-  
+
   rules:
     {{- range .Values.httpRoute.rules }}
     - backendRefs:
         {{- range .backendRefs }}
-        - group: "{{ .group }}"
+        - group: "{{ .group | default "" }}"  # Use default "" if group is missing
           kind: "{{ .kind }}"
           name: {{ include "web-service.fullname" . }}
-          port: {{ .port }}
-          weight: {{ .weight }}
+          port: {{ .port }} 
+          weight: {{ .weight | default 1 }}  # Use default weight 1 if missing
         {{- end }}
       matches:
         {{- range .matches }}
