@@ -13,4 +13,3 @@ pkg/
 src/
 helm/**/charts
 test-charts/
-helm/grpc-service
