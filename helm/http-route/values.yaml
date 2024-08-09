@@ -34,7 +34,7 @@ podSecurityContext: {}
 
 securityContext: {}
   # capabilities:
-  #   drop:
+  #   drop:make test
   #   - ALL
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
