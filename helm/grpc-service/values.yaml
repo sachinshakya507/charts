@@ -117,3 +117,43 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+httpRoute:
+  enabled: false
+  parentRefs:
+    - name: envoygateway
+      kind: Gateway
+      namespace: default
+  hostnames:
+    - "envoytest.hamropatro.com"
+  rules:
+    - backendRefs:
+        - group: ""
+          kind: Service
+          weight: 1
+          name: ""
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
+
+grpcRoute:
+  enabled: true
+  name: grpcroute
+  parentRefs:
+    - name: envoygateway
+  hostnames:
+    - "grpc-envoy.hamropatro.com"
+  rules:
+      - matches:
+        - method:
+            method: ServerReflectionInfo
+            service: grpc.reflection.v1alpha.ServerReflection
+        - method:
+            method: Ping
+        backendRefs:
+          - group: ""
+            kind: Service
+            name: yages
+            port: 9000
+            weight: 1

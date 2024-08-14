@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "grpc-service.fullname" . }}
+  name: {{ include "service.fullname" . }}
   annotations:
   {{- if .Values.grpcs.enabled }}
     secret.reloader.stakater.com/reload: "{{ .Values.grpcs.tlsSecret }}"
@@ -19,14 +19,14 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
   labels:
-    {{- include "grpc-service.labels" . | nindent 4 }}
+    {{- include "service.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "grpc-service.selectorLabels" . | nindent 6 }}
+      {{- include "service.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -34,17 +34,17 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "grpc-service.selectorLabels" . | nindent 8 }}
+        {{- include "service.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "grpc-service.serviceAccountName" . }}
+      serviceAccountName: {{ include "service.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      {{- if .Values.grpcs.enabled }}
       initContainers:
+      {{- if .Values.grpcs.enabled }}
         - name: init-tls
           image: docker.io/nginx
           imagePullPolicy: IfNotPresent
@@ -59,6 +59,9 @@ spec:
             - name: secret
               mountPath: /tls
               readOnly: true
+      {{- end }}
+      {{- with .Values.initContainers }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       containers:
         - name: "service"
@@ -82,6 +85,11 @@ spec:
             - name: {{ $key}}
               value: {{ $value | quote}}
             {{- end }}
+          {{- if .Values.envConfigMap }}
+          envFrom:
+          - configMapRef:
+              name: {{ .Values.envConfigMap }}
+          {{- end }}
           {{- if .Values.grpcs.enabled }}
             - name: TLS_ENABLED
               value: "true"

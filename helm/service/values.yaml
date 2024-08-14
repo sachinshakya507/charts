@@ -34,11 +34,12 @@ podSecurityContext: {}
 
 securityContext: {}
   # capabilities:
-  #   drop:make test
+  #   drop:
   #   - ALL
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
+initContainers: []
 http:
   enabled: false
   port: 8080
@@ -51,14 +52,23 @@ grpcs:
   tlsSecret: ""
 tlsroute:
   enabled: false
-  snis: []
+  snis:
+    - example.com
+httproute:
+  enabled: false
+  gateways: []
+  hosts:
+    - example.com
+  paths: 
+    - path: /
+   
 liveness:
   enabled: true
   path: ""
   command: []
-  timeoutSeconds: 1
   periodSeconds: 30
   initialDelaySeconds: 30
+  timeoutSeconds: 1
 readiness:
   enabled: true
   path: ""
@@ -70,7 +80,6 @@ service:
   type: ClusterIP
   port: 80
   targetPort: 80
-
 
 metrics:
   serviceMonitor:
@@ -120,21 +129,19 @@ tolerations: []
 affinity: {}
 
 httpRoute:
-  enabled: true
-  name: httproute
-  namespace: default
+  enabled: false
   parentRefs:
     - name: envoygateway
       kind: Gateway
+      namespace: default
   hostnames:
     - "envoytest.hamropatro.com"
   rules:
     - backendRefs:
         - group: ""
           kind: Service
-          name: nginx
-          port: 80
           weight: 1
+          name: ""
       matches:
         - path:
             type: PathPrefix
@@ -160,4 +167,3 @@ grpcRoute:
             name: yages
             port: 9000
             weight: 1
-            

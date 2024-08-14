@@ -1,11 +1,11 @@
 {{- if .Values.tlsroute.enabled -}}
-{{- $fullName := include "grpc-service.fullname" . -}}
+{{- $fullName := include "service.fullname" . -}}
 kind: TLSRoute
 apiVersion: networking.x-k8s.io/v1alpha1
 metadata:
   name: {{ $fullName }}
   labels:
-    {{- include "grpc-service.labels" . | nindent 4 }}
+    {{- include "service.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}

@@ -2,19 +2,19 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: "{{ include "grpc-service.fullname" . }}"
+  name: "{{ include "service.fullname" . }}"
   labels:
-    app.kubernetes.io/name: {{ template "grpc-service.name" . }}
+    app.kubernetes.io/name: {{ template "service.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     {{- if .Values.metrics.serviceMonitor.additionalLabels }}
     #   {{ toYaml .Values.metrics.serviceMonitor.additionalLabels | indent 4 }}
     {{- end }}
   namespace: {{ .Release.Namespace }}
 spec:
-  jobLabel: "{{ include "grpc-service.fullname" . }}"
+  jobLabel: "{{ include "service.fullname" . }}"
   selector:
     matchLabels:
-    {{- include "grpc-service.selectorLabels" . | nindent 6 }}
+    {{- include "service.selectorLabels" . | nindent 6 }}
   endpoints:
     - port: http
       interval: 10s
