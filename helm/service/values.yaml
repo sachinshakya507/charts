@@ -148,7 +148,7 @@ httpRoute:
             value: /
 
 grpcRoute:
-  enabled: true
+  enabled: false
   name: grpcroute
   parentRefs:
     - name: envoygateway
