@@ -3,6 +3,16 @@ entries:
   grpc-service:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-08-14T04:21:28.813156017Z"
+    description: A Helm chart for Kubernetes
+    digest: 32d9fb2438286516baff7c7e39db0113c8c6e2d19c7cf9ab71f8fca9eb0121b4
+    name: grpc-service
+    type: application
+    urls:
+    - https://github.com/sachinshakya507/charts/releases/download/grpc-service-2.0.0/grpc-service-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-08-09T10:51:22.817724666Z"
     description: A Helm chart for Kubernetes
     digest: 3d12450f784f7bcbe3246264a417cb4593f6b320340c00f9c1982b020e5e45bd
@@ -35,6 +45,16 @@ entries:
   service:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-08-14T04:21:28.979987747Z"
+    description: A Helm chart for Kubernetes
+    digest: 9a765d7f9155ff4381412f1a94ce4642420aa946213620ec51cccb0ba6e13dfb
+    name: service
+    type: application
+    urls:
+    - https://github.com/sachinshakya507/charts/releases/download/service-2.0.0/service-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-08-07T06:00:28.060232245Z"
     description: A Helm chart for Kubernetes
     digest: f97c2a6db4c6215f2d368d7878f343f543bcff7bf446927c8bb4d7951390de60
@@ -64,6 +84,16 @@ entries:
     - https://github.com/sachinshakya507/charts/releases/download/service-0.3.0/service-0.3.0.tgz
     version: 0.3.0
   web-service:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-08-14T04:21:29.163192518Z"
+    description: A Helm chart for Kubernetes
+    digest: 46a594cbe10539209cfa2e0165befccb0e5db5b5920162dd2ca12ebcd3a7fb19
+    name: web-service
+    type: application
+    urls:
+    - https://github.com/sachinshakya507/charts/releases/download/web-service-2.0.0/web-service-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2024-08-14T04:17:37.351827457Z"
@@ -424,4 +454,4 @@ entries:
     urls:
     - https://github.com/sachinshakya507/charts/releases/download/web-service-0.4.0/web-service-0.4.0.tgz
     version: 0.4.0
-generated: "2024-08-14T04:17:37.352226802Z"
+generated: "2024-08-14T04:21:29.163464496Z"
