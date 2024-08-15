@@ -31,8 +31,8 @@ spec:
         {{- end }}
       backendRefs:
         {{- range .backendRefs }}
-        - group: "{{ .group | default "" }}"
-          kind: "{{ .kind }}"
+        - group: {{ .group | default "" }}
+          kind: {{ .kind }}
           name: {{ .name }}
           port: {{ .port }}
           weight: {{ .weight }}
