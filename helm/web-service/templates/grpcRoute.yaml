@@ -23,17 +23,17 @@ spec:
         {{- range .matches }}
         - method:
             {{- if .method.method }}
-            method: {{ .method.method }}
+            method: "{{ .method.method }}"
             {{- end }}
             {{- if .method.service }}
-            service: {{ .method.service }}
+            service: "{{ .method.service }}"
             {{- end }}
         {{- end }}
       backendRefs:
         {{- range .backendRefs }}
-        - group: {{ .group | default "" }}
-          kind: {{ .kind }}
-          name: {{ .name }}
+        - group: "{{ .group | default "" }}"
+          kind: "{{ .kind }}"
+          name: "{{ .name }}"
           port: {{ .port }}
           weight: {{ .weight }}
         {{- end }}
