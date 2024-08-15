@@ -12,7 +12,7 @@ spec:
       namespace: {{ .namespace | default "default" }}
     {{- end }}
   
-  hostnames:
+  hostnames:``
     {{- range .Values.grpcRoute.hostnames }}
     - "{{ . }}"
     {{- end }}
