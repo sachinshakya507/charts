@@ -142,6 +142,7 @@ grpcRoute:
   parentRefs:
     - name: envoygateway
       kind: Gateway
+      namespace: default
   hostnames:
     - "grpc-envoy.hamropatro.com"
   rules:
