@@ -139,9 +139,9 @@ httpRoute:
 
 grpcRoute:
   enabled: false
-  name: grpcroute
   parentRefs:
     - name: envoygateway
+      kind: Gateway
   hostnames:
     - "grpc-envoy.hamropatro.com"
   rules:

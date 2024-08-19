@@ -1,4 +1,7 @@
-apiVersion: gateway.networking.k8s.io/v1alpha2
+{{- if .Values.grpcRoute.enabled -}}
+{{- $grpcPort := .Values.grpc.port -}}
+{{- $name := include "grpc-service.fullname" . -}}
+apiVersion: gateway.networking.k8s.io/v1
 kind: GRPCRoute
 metadata:
   name: {{ include "grpc-service.fullname" . }}
@@ -9,10 +12,12 @@ spec:
     {{- range .Values.grpcRoute.parentRefs }}
     - name: {{ .name }}
       kind: {{ .kind }}
-      namespace: {{ .namespace | default "default" }}
+      {{- if .namespace }}
+      namespace: {{ .namespace }}
+      {{- end }}
     {{- end }}
   
-  hostnames:``
+  hostnames:
     {{- range .Values.grpcRoute.hostnames }}
     - "{{ . }}"
     {{- end }}
@@ -33,8 +38,9 @@ spec:
         {{- range .backendRefs }}
         - group: "{{ .group | default "" }}"
           kind: "{{ .kind }}"
-          name: {{ .name }}
-          port: {{ .port }}
-          weight: {{ .weight }}
+          name: {{ $name }}
+          port: {{ $grpcPort  }}
+          weight: {{ .weight | default 1 }}
         {{- end }}
     {{- end }}
+{{- end }}
