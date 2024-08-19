@@ -26,11 +26,11 @@ spec:
     {{- range .Values.httpRoute.rules }}
     - backendRefs:
         {{- range .backendRefs }}
-        - group: "{{ .group | default "" }}"  # Use default "" if group is missing
-          kind: "{{ .kind | default "Service"  }}"
+        - group: {{ .group }}
+          kind: {{ .kind }}
           name: "{{ $name }}"
           port: {{ $svcPort }}
-          weight: {{ .weight | default 1 }}  # Use default weight 1 if missing
+          weight: {{ .weight }}  # Use default weight 1 if missing
         {{- end }}
       matches:
         {{- range .matches }}
