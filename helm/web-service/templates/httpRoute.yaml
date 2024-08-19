@@ -26,8 +26,8 @@ spec:
     {{- range .Values.httpRoute.rules }}
     - backendRefs:
         {{- range .backendRefs }}
-        - group: "{{ .group | default "" }}" 
-          kind: "{{ .kind | default "Service"  }}"
+        - group: {{ .group }}
+          kind: {{ .kind }}
           name: {{ $name }}
           port: {{ $svcPort }} 
           weight: {{ .weight | default 1 }}
