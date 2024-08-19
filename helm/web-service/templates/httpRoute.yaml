@@ -1,4 +1,5 @@
 {{- if .Values.httpRoute.enabled -}}
+{{- $svcPort := .Values.service.port -}}
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
@@ -26,8 +27,8 @@ spec:
         {{- range .backendRefs }}
         - group: "{{ .group | default "" }}"  # Use default "" if group is missing
           kind: "{{ .kind }}"
-          name: "{{ .name }}"
-          port: {{ .port }} 
+          name: "{{ include "web-service.fullname" . }}"
+          port: {{ $svcPort }} 
           weight: {{ .weight | default 1 }}  # Use default weight 1 if missing
         {{- end }}
       matches:
