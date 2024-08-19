@@ -119,9 +119,10 @@ httpRoute:
   rules:
     - backendRefs:
         - group: ""
-          kind: Service
-          weight: 1
+          kind: ""
+          weight: ""
           name: ""
+          port: ""
       matches:
         - path:
             type: PathPrefix
