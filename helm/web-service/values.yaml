@@ -120,9 +120,9 @@ httpRoute:
     - backendRefs:
         - group: ""
           kind: "Service"
-          weight: "1"
-          name: ""
-          port: "80"
+          weight: 1
+          name: "test-web-web-service"
+          port: 80
       matches:
         - path:
             type: PathPrefix

@@ -48,5 +48,5 @@ spec:
             - group: ""
               kind: "Service"
               weight: 1
-              name: ""
-              port: 
+              name: "test-web-web-service"
+              port: 80
