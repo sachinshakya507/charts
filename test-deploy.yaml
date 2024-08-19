@@ -44,9 +44,9 @@ spec:
             - path:
                 type: PathPrefix
                 value: /
-          backendRefs:
-            - group: ""
-              kind: "Service"
-              weight: 1
-              name: "test-web-web-service"
-              port: 80
+          # backendRefs:
+          #   - group: ""
+          #     kind: "Service"
+          #     weight: 1
+          #     name: "test-web-web-service"
+          #     port: 80

@@ -28,7 +28,7 @@ spec:
         {{- range .backendRefs }}
         - group: "{{ .group | default "" }}" 
           kind: "{{ .kind | default "Service"  }}"
-          name: "{{ $name }}"
+          name: {{ $name }}
           port: {{ $svcPort }} 
           weight: {{ .weight | default 1 }}
         {{- end }}
