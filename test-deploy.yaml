@@ -27,7 +27,7 @@ spec:
     env: 
       a: "b"
     secretenv: 
-      c: "e"
+      c: "f"
 
     autoscaling:
       enabled: true
