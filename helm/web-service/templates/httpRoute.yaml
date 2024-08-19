@@ -1,8 +1,9 @@
 {{- if .Values.httpRoute.enabled -}}
+{{- $fullName := include "service.fullname" . -}}
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: {{ $name }}
+  name: {{ $fullname }}
   labels:
     {{- include "web-service.labels" . | nindent 4 }}
 spec:
