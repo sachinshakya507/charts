@@ -29,7 +29,7 @@ spec:
         - group: "{{ .group | default "" }}"  # Use default "" if group is missing
           kind: "{{ .kind | default "Service"  }}"
           name: "{{ $name }}"
-          port: "{{ $svcPort }}"
+          port: {{ $svcPort }}
           weight: {{ .weight | default 1 }}  # Use default weight 1 if missing
         {{- end }}
       matches:
