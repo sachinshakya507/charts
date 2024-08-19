@@ -24,6 +24,10 @@ spec:
 
     service:
       targetPort: 80
+    env: 
+      a: "b"
+    secretenv: 
+      c: "e"
 
     autoscaling:
       enabled: true
