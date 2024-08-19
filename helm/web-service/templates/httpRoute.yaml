@@ -26,11 +26,11 @@ spec:
     {{- range .Values.httpRoute.rules }}
     - backendRefs:
         {{- range .backendRefs }}
-        - group: {{ .group }}
-          kind: {{ .kind }}
-          weight: {{ .weight }}
-          name: {{ $name }}
-          port: {{ $svcPort }}
+        - group: "{{ .group | default "" }}" 
+          kind: "{{ .kind | default "Service"  }}"
+          name: "{{ $name }}"
+          port: {{ $svcPort }} 
+          weight: {{ .weight | default 1 }}
         {{- end }}
       matches:
         {{- range .matches }}
