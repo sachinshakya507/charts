@@ -28,7 +28,7 @@ spec:
         {{- range .backendRefs }}
         - group: {{ .group }}
           kind: {{ .kind }}
-          name: "{{ $name }}"
+          name: {{ $name }}
           port: {{ $svcPort }}
           weight: {{ .weight }}  # Use default weight 1 if missing
         {{- end }}
