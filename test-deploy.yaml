@@ -38,7 +38,7 @@ spec:
         memory: 128Mi
 
     httpRoute:
-      enabled: false
+      enabled: true
       hostnames:
         - "test-deploy1.hamrostack.com"
       rules:
@@ -47,4 +47,5 @@ spec:
                 type: PathPrefix
                 value: /
           backendRefs:
-            - weight: 1
+            - name: test-web-web-service
+              port: 80

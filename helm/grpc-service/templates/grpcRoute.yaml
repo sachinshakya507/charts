@@ -1,6 +1,4 @@
 {{- if .Values.grpcRoute.enabled -}}
-{{- $grpcPort := .Values.grpc.port -}}
-{{- $name := include "grpc-service.fullname" . -}}
 apiVersion: gateway.networking.k8s.io/v1
 kind: GRPCRoute
 metadata:
@@ -36,10 +34,10 @@ spec:
         {{- end }}
       backendRefs:
         {{- range .backendRefs }}
-        - group: "{{ .group | default "" }}"
-          kind: "{{ .kind }}"
-          name: {{ $name }}
-          port: {{ $grpcPort  }}
+        - group: {{ .group }}
+          kind: {{ .kind }}
+          name: {{ .name }}
+          port: {{ .port }} 
           weight: {{ .weight | default 1 }}
         {{- end }}
     {{- end }}

@@ -146,15 +146,9 @@ grpcRoute:
   hostnames:
     - "grpc-envoy.hamropatro.com"
   rules:
-      - matches:
-        - method:
-            method: ServerReflectionInfo
-            service: grpc.reflection.v1alpha.ServerReflection
-        - method:
-            method: Ping
-        backendRefs:
+      - backendRefs:
           - group: ""
             kind: Service
-            name: yages
-            port: 9000
+            name: grpc-service
+            port: 50051
             weight: 1
