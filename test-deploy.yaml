@@ -13,9 +13,7 @@ spec:
       repository: docker.io/hamropatrorepo/election-update
       pullPolicy: IfNotPresent
       tag: "v1"
-    
-    imagePullSecrets:
-      - name: regcred
+
     
     liveness:
       path: /
@@ -25,9 +23,9 @@ spec:
     service:
       targetPort: 80
     env: 
-      a: "b"
+      a: "be"
     secretenv: 
-      c: "f"
+      c: "zebra"
 
     autoscaling:
       enabled: true
@@ -40,7 +38,7 @@ spec:
         memory: 128Mi
 
     httpRoute:
-      enabled: true
+      enabled: false
       hostnames:
         - "test-deploy1.hamrostack.com"
       rules:
