@@ -2,7 +2,7 @@
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: SecurityPolicy
 metadata:
-  name: {{ include "web-service.fullname" . }}-security-policy
+  name: {{ include "grpc-service.fullname" . }}-security-policy
   {{- with .Values.securityPolicy.metadata.labels }}
   labels:
     {{- toYaml . | nindent 4 }}
