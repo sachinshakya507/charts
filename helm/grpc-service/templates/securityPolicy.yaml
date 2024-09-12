@@ -1,8 +1,8 @@
-{{- if and .Values.grpcRoute.enabled .Values.securityPolicy.enabled }}
+{{- if and .Values.grpcRoute.enabled .Values.securityPolicy.enabled -}}
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: SecurityPolicy
 metadata:
-  name: {{ include "grpc-service.fullname" . }}-security-policy
+  name: {{ include "grpc-service.fullname" . }}
   {{- with .Values.securityPolicy.metadata.labels }}
   labels:
     {{- toYaml . | nindent 4 }}

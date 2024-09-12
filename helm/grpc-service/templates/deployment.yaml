@@ -15,6 +15,9 @@ metadata:
   {{- if .Values.http.enabled }}
     appProtocol.http: "true"
   {{- end }}
+  {{- if .Values.metric.enabled }}
+    appProtocol.metric: "true"
+  {{- end }}
   {{- with .Values.deploymentAnnotations }}
     {{- toYaml . | nindent 4 }}
   {{- end }}
@@ -105,6 +108,11 @@ spec:
             - protocol: TCP
               name: grpcs
               containerPort: {{ .Values.grpcs.port }}
+          {{- end }}
+          {{- if .Values.metric.enabled }}
+            - protocol: TCP
+              name: metric
+              containerPort: {{ .Values.metric.port }}
           {{- end }}
           volumeMounts:
             - name: config

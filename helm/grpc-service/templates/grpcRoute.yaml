@@ -22,22 +22,12 @@ spec:
 
   rules:
     {{- range .Values.grpcRoute.rules }}
-    - matches:
-        {{- range .matches }}
-        - method:
-            {{- if .method.method }}
-            method: {{ .method.method }}
-            {{- end }}
-            {{- if .method.service }}
-            service: {{ .method.service }}
-            {{- end }}
-        {{- end }}
-      backendRefs:
+    - backendRefs:
         {{- range .backendRefs }}
         - group: {{ .group }}
           kind: {{ .kind }}
           name: {{ .name }}
-          port: {{ .port }} 
+          port: {{ .port  }}
           weight: {{ .weight | default 1 }}
         {{- end }}
     {{- end }}

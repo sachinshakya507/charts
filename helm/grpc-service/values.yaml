@@ -39,24 +39,22 @@ securityContext: {}
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
-
 http:
   enabled: false
   port: 8080
-
 grpc:
   enabled: false
   port: 50051
-
+metric:
+  enabled: false
+  port: 9004
 grpcs:
   enabled: false
   port: 50052
   tlsSecret: ""
-
 tlsroute:
   enabled: false
   snis: []
-
 liveness:
   enabled: true
   path: ""
@@ -64,7 +62,6 @@ liveness:
   timeoutSeconds: 1
   periodSeconds: 30
   initialDelaySeconds: 30
-
 readiness:
   enabled: true
   path: ""
@@ -72,7 +69,6 @@ readiness:
   periodSeconds: 30
   initialDelaySeconds: 30
   timeoutSeconds: 1
-
 service:
   type: ClusterIP
   port: 80
@@ -82,10 +78,8 @@ metrics:
   serviceMonitor:
     enabled: false
     additionalLabel: {}
-
 volumes: []
 volumeMounts: []
-
 ingress:
   enabled: false
   className: ""
@@ -134,30 +128,31 @@ httpRoute:
       kind: Gateway
       namespace: default
   hostnames:
-    - "envoytest.hamropatro.com"
+    - "grpc-service.example.com"
   rules:
     - backendRefs:
         - group: ""
-          kind: Service
+          kind: "Service"
           weight: 1
-          name: ""
+          name: grpc-service
+          port: 80
       matches:
         - path:
             type: PathPrefix
             value: /
 
 grpcRoute:
-  enabled: true
+  enabled: false
   parentRefs:
     - name: envoygateway
       kind: Gateway
       namespace: default
   hostnames:
-    - "grpc-envoy.hamropatro.com"
+    - "grpc-service.example.com"
   rules:
     - backendRefs:
         - group: ""
-          kind: Service
+          kind: "Service"
           name: grpc-service
           port: 50051
           weight: 1
@@ -167,10 +162,7 @@ securityPolicy:
   metadata:
     name: cors-policy
   spec:
-    targetRefs:
-      - group: gateway.networking.k8s.io
-        kind: GRPCRoute
-        name: grpc-http-route
+    targetRefs: []
     cors:
       allowCredentials: true
       allowOrigins:
