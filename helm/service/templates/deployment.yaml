@@ -5,6 +5,7 @@ metadata:
   annotations:
   {{- if .Values.grpcs.enabled }}
     secret.reloader.stakater.com/reload: "{{ .Values.grpcs.tlsSecret }}"
+    test: test
   {{- end }}
   {{- if .Values.grpc.enabled }}
     appProtocol.grpc: "true"
