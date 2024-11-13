@@ -30,6 +30,7 @@ jobs:
         uses: helm/chart-releaser-action@v1.6.0
         with:
             charts_dir: helm
-            pages_branch: main
+            pages_branch: main #change th branch
+            index-path: "build/index.yaml"
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
