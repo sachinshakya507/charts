@@ -35,3 +35,29 @@ jobs:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           # CR_SKIP_EXISTING: true
           # CR_INDEX_PATH: "build/index.yaml"
+    move_file:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout Code
+          uses: actions/checkout@v3
+        with:
+            fetch-depth: 0  # Fetch all history and branches
+            ref: gh-pages
+        - name: Move Updated File
+          run: |
+            cp index.yaml build/index.yaml
+  
+        # Configure Git to push changes back
+        - name: Configure Git
+          run: |
+            git config --local user.name "github-actions[bot]"
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+  
+        # Commit and push the moved file
+        - name: Commit and Push Changes
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          run: |
+            git add build/index.yaml
+            git commit -m "copy file"
+            git push
