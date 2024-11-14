@@ -3,6 +3,16 @@ entries:
   service:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-11-14T04:40:52.459259205Z"
+    description: A Helm chart for Kubernetes
+    digest: 5bf6fcd7b44ad7cdb3e865fb9791aae2a8d5c3611f844abb2008e452a02e607f
+    name: service
+    type: application
+    urls:
+    - https://github.com/sachinshakya507/charts/releases/download/service-2.0.18/service-2.0.18.tgz
+    version: 2.0.18
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-11-14T04:39:22.14387526Z"
     description: A Helm chart for Kubernetes
     digest: 0d0821111e4f21c410a6e26af5db37f93767f42a6a213202789e83c307b7a6e4
@@ -111,4 +121,4 @@ entries:
     urls:
     - https://github.com/sachinshakya507/charts/releases/download/service-2.0.4/service-2.0.4.tgz
     version: 2.0.4
-generated: "2024-11-14T04:39:22.143924803Z"
+generated: "2024-11-14T04:40:52.4593046Z"
