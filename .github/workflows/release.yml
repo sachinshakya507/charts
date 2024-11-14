@@ -31,8 +31,8 @@ jobs:
         with:
             charts_dir: helm
             pages_branch: main #change th branch
-            index_path: .cr-index/test.yaml
-            pages_index_path: test.yaml
+            index_path: .cr-index/build/index.yaml
+            # pages_index_path: test.yaml
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           # CR_INDEX_PATH: build/index.yaml
