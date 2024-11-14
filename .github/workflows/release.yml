@@ -29,18 +29,9 @@ jobs:
         uses: helm/chart-releaser-action@v1.6.0
         with:
             charts_dir: helm
-            # pages_branch: main #change th branch
-            # config: helm/cr.yaml 
+            pages_branch: main #change th branch
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          # CR_SKIP_EXISTING: true
-          # CR_INDEX_PATH: "build/index.yaml"
-          
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      with:
-          fetch-depth: 0  # Fetch all history and branches
-          ref: gh-pages
       - name: Move Updated File
         run: |
           cp index.yaml build/index.yaml
