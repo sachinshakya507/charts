@@ -13,8 +13,7 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-        with:
-            token: ${{ secrets.NOTEHUB_JS_TOKEN }}
+
       - name: Move Updated File
         run: |
           cp index.yaml build/index.yaml
