@@ -35,9 +35,7 @@ jobs:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           # CR_SKIP_EXISTING: true
           # CR_INDEX_PATH: "build/index.yaml"
-  move_file:
-    runs-on: ubuntu-latest
-    steps:
+          
       - name: Checkout Code
         uses: actions/checkout@v3
       with:
