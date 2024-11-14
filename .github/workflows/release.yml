@@ -9,6 +9,8 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
+    outputs:
+      release_status: ${{ steps.chart-releaser.outputs.changed }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -24,23 +26,35 @@ jobs:
         uses: azure/setup-helm@v3
 
       - name: Run chart-releaser
+        id: chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
         with:
-            charts_dir: helm
-            pages_branch: main #change th branch
+          charts_dir: helm
+          pages_branch: main
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+  copy-index:
+    needs: release
+    if: needs.release.result == 'success'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
       - name: Move Updated File
         run: |
           cp index.yaml build/index.yaml
 
-      # Configure Git to push changes back
       - name: Configure Git
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
 
-      # Commit and push the moved file
       - name: Commit and Push Changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
