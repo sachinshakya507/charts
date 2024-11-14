@@ -35,4 +35,4 @@ jobs:
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           CR_SKIP_EXISTING: true
-          # CR_INDEX_PATH: "custom/path/index.yaml"
+          CR_INDEX_PATH: "build/index.yaml"
