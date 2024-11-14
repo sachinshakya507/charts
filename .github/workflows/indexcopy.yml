@@ -18,7 +18,7 @@ jobs:
           mkdir -p build
           
           # Copy files from source to destination
-          cp -r index.yaml build/index.yaml
+          cp -r index.yaml build/
 
       
       # Optional: If you want to commit the changes back to the repository
