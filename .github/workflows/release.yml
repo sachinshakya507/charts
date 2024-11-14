@@ -30,7 +30,7 @@ jobs:
         uses: helm/chart-releaser-action@v1.6.0
         with:
             charts_dir: helm
-            pages_branch: main #change th branch
+            # pages_branch: main #change th branch
             index_path: build/index.yaml
             pages-index-path: test.yaml
         env:
