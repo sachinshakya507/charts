@@ -4,6 +4,7 @@ metadata:
   name: {{ include "web-service.fullname" . }}
   {{- with .Values.deploymentAnnotations }}
   annotations:
+    a: b
     checksum/secrets: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
     {{- toYaml . | nindent 4 }}
   {{- end }}
