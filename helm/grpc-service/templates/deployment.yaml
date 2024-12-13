@@ -4,7 +4,7 @@ metadata:
   name: {{ include "grpc-service.fullname" . }}
   annotations:
     rollme: {{ randAlphaNum 5 | quote }}
-    checksum/config: {{ include (print $.Template.BasePath "/secrets.yaml") . | sha256sum }}
+    checksum/secret: {{ include (print $.Template.BasePath "/secrets.yaml") . | sha256sum }}
     secretHash: {{ .Values.secretenv | toJson | sha256sum }}
   {{- if .Values.grpcs.enabled }}
     secret.reloader.stakater.com/reload: "{{ .Values.grpcs.tlsSecret }}"
