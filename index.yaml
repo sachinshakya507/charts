@@ -3,6 +3,16 @@ entries:
   grpc-service:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-12-13T10:06:56.139282205Z"
+    description: A Helm chart for Kubernetes
+    digest: e82e1633820af5be02f4a03aeeb196681550a07533fa57b9ae2c70a1890e069c
+    name: grpc-service
+    type: application
+    urls:
+    - https://github.com/sachinshakya507/charts/releases/download/grpc-service-3.0.4/grpc-service-3.0.4.tgz
+    version: 3.0.4
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-12-13T09:56:33.506306675Z"
     description: A Helm chart for Kubernetes
     digest: 96128387307d78f83da5ffb7918cf691be5e5e2d339fc82ffe6c6b406d0ae2e2
@@ -225,6 +235,16 @@ entries:
   web-service:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-12-13T10:06:56.342515Z"
+    description: A Helm chart for Kubernetes
+    digest: d2aa3b513c1f52946b25725a76e8133b6d1c5c96405d8fbfb4d5c77e187d238e
+    name: web-service
+    type: application
+    urls:
+    - https://github.com/sachinshakya507/charts/releases/download/web-service-4.0.7/web-service-4.0.7.tgz
+    version: 4.0.7
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-11-22T09:09:53.725679278Z"
     description: A Helm chart for Kubernetes
     digest: 6992c183a183fabbd64d6fda14d3f569457d6527db4aae9a50860ef942ea2dcb
@@ -333,4 +353,4 @@ entries:
     urls:
     - https://github.com/sachinshakya507/charts/releases/download/web-service-2.0.25/web-service-2.0.25.tgz
     version: 2.0.25
-generated: "2024-12-13T09:56:33.506381244Z"
+generated: "2024-12-13T10:06:56.342620818Z"
