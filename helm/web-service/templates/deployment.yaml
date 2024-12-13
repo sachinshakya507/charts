@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "web-service.fullname" . }}
   annotations:
+    secretHash: {{ .Values.secretenv | toJson | sha256sum }}
     checksum/secrets: {{ include (print $.Template.BasePath "/secrets.yaml") . | sha256sum }}-{{ toYaml .Values.secretenv | sha256sum }}
     {{- with .Values.deploymentAnnotations }}
     {{- toYaml . | nindent 4 }}
